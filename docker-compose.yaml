@@ -1,0 +1,36 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    networks:
+      - app_network
+    environment:
+      DATABASE_URL: postgresql://postgres:example@db:5432/driver_db
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:17-alpine
+    container_name: db
+    hostname: db
+    ports:
+      - 5432:5432
+    networks:
+      - app_network
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: postgres
+      POSTGRES_DB: driver_db
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+networks:
+  app_network:
+
+volumes:
+  pgdata:
