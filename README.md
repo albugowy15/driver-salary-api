@@ -121,7 +121,6 @@ Base URL: `http://localhost:5000`
 Returns payroll information for all drivers in a specific month and year.
 
 ```
-GET /v1/api/salary?month={month}&year={year}
 GET /v1/salary/driver/list?page_size={page_size}&driver_code={driver_code}&name={name}&month={month}&year={year}&current={current}
 ```
 
